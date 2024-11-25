@@ -172,10 +172,12 @@
             <option value="Buy">Long</option>
             <option value="Sell">Short</option>
           </select>
-          <input type="number" id="entry-price" placeholder="Entry Price (USDT)" required>
-          <input type="number" id="exit-price" placeholder="Exit Price (USDT)" required>
-          <input type="number" id="margin" placeholder="Margin (USDT)" required>
-          <input type="number" id="leverage" placeholder="Leverage" required>
+          <input type="number" step="any" id="entry-price" placeholder="Entry Price (USDT)" required>
+          <input type="number" step="any" id="exit-price" placeholder="Exit Price (USDT)" required>
+          <input type="number" step="any" id="margin" placeholder="Margin (USDT)" required>
+          <input type="number" step="any" id="leverage" placeholder="Leverage" required>
+          <input type="number" step="any" id="stop-loss" placeholder="Stop-Loss Price (USDT)" required>
+          <input type="number" step="any" id="risk-percentage" placeholder="Risk Percentage (%)" required>
           <textarea id="comments" placeholder="Comments"></textarea>
           <button type="submit">Add Trade</button>
         </form>
@@ -199,68 +201,85 @@
         </table>
       </div>
 
-      <!-- Roadmap Section -->
+      <!-- Trading Challenge Roadmap -->
       <div class="section">
-        <h2>Roadmap</h2>
-        <p>1. Phase 1: Basic trade journal with progress tracker.</p>
-        <p>2. Phase 2: Referral system integration.</p>
-        <p>3. Phase 3: Full-featured analytics and exchange API integration.</p>
+        <h2>Trading Challenge Roadmap</h2>
+        <ul>
+          <li><strong>Week 1:</strong> Aim to make ₹10,000 - Focus on learning and practicing with small trades.</li>
+          <li><strong>Week 2:</strong> Aim to make ₹20,000 - Start increasing trade sizes with good risk management.</li>
+          <li><strong>Week 3:</strong> Aim to make ₹30,000 - Experiment with different trade types and manage leverage.</li>
+          <li><strong>Week 4:</strong> Aim to make ₹50,000 - Review the past trades, optimize strategy, and refine approach.</li>
+          <li><strong>Month 2:</strong> Aim to hit ₹1,25,000 - Focus on consistent profits with proper risk management.</li>
+          <li><strong>Month 3:</strong> Final stretch, target ₹2,50,000 - Scale your trades with confidence and discipline.</li>
+        </ul>
+      </div>
+
+      <!-- About Section -->
+      <div class="section">
+        <h2>About Me</h2>
+        <p>Welcome to Crypto Patil's Trading Journal! I started crypto trading in 2021 and have been learning and improving ever since. My goal is to document trades, analyze performance, and stay disciplined in the pursuit of consistent success in crypto futures trading.</p>
+        <p>Join me on this journey, and feel free to connect for feedback or collaboration opportunities.</p>
       </div>
 
       <!-- Referral Link Section -->
       <div class="section">
-        <h2>Referral Link</h2>
-        <p>Share your referral link: <a href="https://example.com/referral?code=CRYPTOPATIL" target="_blank">https://example.com/referral?code=CRYPTOPATIL</a></p>
+        <h2>Referral Links</h2>
+        <p>Start trading with my referral links:</p>
+        <p>
+          <strong>Binance:</strong> 
+          <a href="https://www.binance.com/activity/referral-entry/CPA/together-v4?hl=en&ref=CPA_00HHV2IYMJ" target="_https://www.binance.info/activity/referral-entry/CPA/together-v4?hl=en&ref=CPA_00HHV2IYMJ">
+            Binance Referral Link
+          </a>
+        </p>
+        <p>
+          <strong>CoinDCX:</strong> 
+          <a href="https://coindcx.com/signup" target="https://join.coindcx.com/invite/oFL2">
+            CoinDCX Referral Link
+          </a>
+        </p>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="section">
+        <h2>Contact</h2>
+        <p>Email me at: <a href="mailto:cryptopatil4488@gmail.com">cryptopatil4488@gmail.com</a></p>
       </div>
     </div>
   </main>
 
   <script>
-    const validUsername = "admin";
-    const validPassword = "appu";
-
+    // Initialize variables
     const loginForm = document.getElementById("login-form");
-    const loginSection = document.getElementById("login-section");
-    const mainContent = document.getElementById("main-content");
-    const currentBalance = document.getElementById("current-balance");
-    const journalEntries = document.getElementById("journal-entries");
     const tradeForm = document.getElementById("trade-form");
+    const journalEntries = document.getElementById("journal-entries");
+    const currentBalance = document.getElementById("current-balance");
     const progressBar = document.getElementById("progress-bar");
 
-    // Initialize balance in localStorage
-    if (!localStorage.getItem("balance")) {
-      localStorage.setItem("balance", "50000");
-    }
-    currentBalance.textContent = localStorage.getItem("balance");
+    let journal = JSON.parse(localStorage.getItem("journal")) || [];
+    let balance = parseFloat(localStorage.getItem("balance")) || 50000;
 
-    // Load journal from localStorage
-    const journal = JSON.parse(localStorage.getItem("journal")) || [];
-    journal.forEach(addJournalEntryToTable);
+    document.getElementById("current-balance").textContent = balance.toFixed(2);
 
-    function updateProgressBar() {
-      const balance = parseFloat(localStorage.getItem("balance"));
-      const progress = ((balance - 50000) / (250000 - 50000)) * 100;
-      progressBar.style.width = `${Math.min(progress, 100)}%`;
-      progressBar.textContent = `${Math.min(progress, 100).toFixed(1)}%`;
-    }
-    updateProgressBar();
-
+    // Login functionality
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
 
-      if (username === validUsername && password === validPassword) {
-        alert("Login successful!");
-        loginSection.style.display = "none";
-        mainContent.style.display = "block";
+      if (username === "admin" && password === "appu") {
+        localStorage.setItem("username", username);
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+        loadJournalEntries();
       } else {
-        alert("Invalid username or password!");
+        alert("Invalid username or password");
       }
     });
 
+    // Trade form submission
     tradeForm.addEventListener("submit", (e) => {
       e.preventDefault();
+
       const entry = {
         date: new Date().toLocaleString(),
         coin: document.getElementById("coin").value,
@@ -269,21 +288,39 @@
         exitPrice: parseFloat(document.getElementById("exit-price").value),
         margin: parseFloat(document.getElementById("margin").value),
         leverage: parseFloat(document.getElementById("leverage").value),
+        stopLoss: parseFloat(document.getElementById("stop-loss").value),
+        riskPercentage: parseFloat(document.getElementById("risk-percentage").value),
         comments: document.getElementById("comments").value,
       };
-      entry.profitLoss = ((entry.exitPrice - entry.entryPrice) * entry.margin * entry.leverage).toFixed(2);
 
+      // Calculate Quantity
+      entry.quantity = (entry.margin * entry.leverage) / entry.entryPrice;
+
+      // Calculate Profit/Loss
+      if (entry.tradeType === "Buy") { // Long Trade
+        entry.profitLoss = ((entry.exitPrice - entry.entryPrice) * entry.quantity).toFixed(2);
+      } else { // Short Trade
+        entry.profitLoss = ((entry.entryPrice - entry.exitPrice) * entry.quantity).toFixed(2);
+      }
+
+      // Add to journal
       journal.push(entry);
       localStorage.setItem("journal", JSON.stringify(journal));
       addJournalEntryToTable(entry);
 
-      const newBalance = parseFloat(localStorage.getItem("balance")) + parseFloat(entry.profitLoss);
+      // Update balance
+      const newBalance = balance + parseFloat(entry.profitLoss);
       localStorage.setItem("balance", newBalance.toFixed(2));
       currentBalance.textContent = newBalance.toFixed(2);
       updateProgressBar();
 
+      // Reset form
       tradeForm.reset();
     });
+
+    function loadJournalEntries() {
+      journal.forEach(entry => addJournalEntryToTable(entry));
+    }
 
     function addJournalEntryToTable(entry) {
       const row = document.createElement("tr");
@@ -299,6 +336,12 @@
         <td>${entry.comments}</td>
       `;
       journalEntries.appendChild(row);
+    }
+
+    function updateProgressBar() {
+      const progress = (balance - 50000) / 200000 * 100;
+      progressBar.style.width = `${Math.min(progress, 100)}%`;
+      progressBar.textContent = `${Math.min(progress, 100).toFixed(2)}%`;
     }
   </script>
 </body>
