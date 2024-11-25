@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crypto Patil's Trading Journal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://images.unsplash.com/photo-1620896518360-bd6f56221360?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDN8fGJpdGNvaW58ZW58MHx8fHwxNjg2NTUyNzE3&ixlib=rb-1.2.1&q=80&w=1920');
+      background-size: cover;
+      background-position: center;
+    }
+    header {
+      background-color: rgba(39, 174, 96, 0.8);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    header img {
+      width: 50px;
+      vertical-align: middle;
+    }
+    main {
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+    }
+    .section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #27ae60;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e8449;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #27ae60;
+      color: white;
+    }
+    .profit {
+      color: green;
+    }
+    .loss {
+      color: red;
+    }
+    .progress-container {
+      background-color: #ddd;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      height: 40px;
+      margin-top: 10px;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #27ae60;
+      text-align: center;
+      color: white;
+      line-height: 40px;
+      font-weight: bold;
+      transition: width 1s;
+    }
+    .quote-container {
+      text-align: center;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      animation: fadeInOut 3s infinite alternate;
+      font-size: 1.8em;
+      font-weight: bold;
+      color: white;
+      background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+    }
+    @keyframes fadeInOut {
+      from {
+        opacity: 0.6;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #27ae60;
+      color: white;
+    }
+    footer a {
+      color: yellow;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .roadmap {
+      background-color: rgba(39, 174, 96, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+    .roadmap h2 {
+      text-align: center;
+    }
+    .roadmap ul {
+      list-style: none;
+      padding: 0;
+    }
+    .roadmap ul li {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Crypto Patil's Trading Journal</h1>
+    <p>Your journey from ₹50,000 to ₹2,50,000 starts here!</p>
+  </header>
+
+  <main>
+    <!-- Progress Tracker -->
+    <div class="section">
+      <h2>Progress Tracker</h2>
+      <p><strong>Start Balance:</strong> ₹50,000</p>
+      <p><strong>Target Balance:</strong> ₹2,50,000</p>
+      <p><strong>Current Balance:</strong> ₹<span id="current-balance">50,000</span></p>
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar">0%</div>
+      </div>
+    </div>
+
+    <!-- Motivational Quotes -->
+    <div class="quote-container" id="quote-container">
+      Consistency is Key!
+    </div>
+
+    <!-- Calculation -->
+    <div class="section">
+      <h2>Trade Calculation</h2>
+      <form id="trade-form">
+        <input type="date" id="trade-date" required>
+        <input type="text" id="coin-name" placeholder="Coin Name (e.g., BTC, ETH)" required>
+        <select id="trade-type" required>
+          <option value="" disabled selected>Select Trade Type</option>
+          <option value="Long">Long</option>
+          <option value="Short">Short</option>
+        </select>
+        <input type="number" step="0.01" id="entry-price" placeholder="Entry Price (USDT)" required>
+        <input type="number" step="0.01" id="exit-price" placeholder="Exit Price (USDT)" required>
+        <input type="number" step="0.01" id="margin" placeholder="Margin (USDT)" required>
+        <input type="number" id="leverage" placeholder="Leverage (e.g., 10x)" required>
+        <textarea id="comments" placeholder="Comments (Optional)"></textarea>
+        <button type="submit">Add Trade</button>
+      </form>
+    </div>
+
+    <!-- Trade Journal -->
+    <div class="section">
+      <h2>Trade Journal</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Coin</th>
+            <th>Trade Type</th>
+            <th>Entry Price (USDT)</th>
+            <th>Exit Price (USDT)</th>
+            <th>Margin (USDT)</th>
+            <th>Leverage</th>
+            <th>Profit/Loss (USDT)</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody id="journal-entries">
+          <!-- Entries -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Trading Challenge Roadmap -->
+    <div class="roadmap">
+      <h2>Trading Challenge Roadmap</h2>
+      <ul>
+        <li><strong>Week 1:</strong> Aim to make ₹10,000 - Focus on learning and practicing with small trades.</li>
+        <li><strong>Week 2:</strong> Aim to make ₹20,000 - Start increasing trade sizes with good risk management.</li>
+        <li><strong>Week 3:</strong> Aim to make ₹30,000 - Experiment with different trade types and manage leverage.</li>
+        <li><strong>Week 4:</strong> Aim to make ₹50,000 - Review the past trades, optimize strategy, and refine approach.</li>
+        <li><strong>Month 2:</strong> Aim to hit ₹1,25,000 - Focus on consistent profits with proper risk management.</li>
+        <li><strong>Month 3:</strong> Final stretch, target ₹2,50,000 - Scale your trades with confidence and discipline.</li>
+      </ul>
+    </div>
+
+    <!-- About Section -->
+    <footer>
+      <h2>About Me</h2>
+      <p>Welcome to Crypto Patil's Trading Journal! I started crypto trading in 2021 and have been learning and improving ever since. Join me on this journey as I work towards achieving consistent success in crypto futures trading.</p>
+      <p>Contact me at: <strong>cryptopatil4488@gmail.com</strong></p>
+      <h3>Join My Trusted Platforms</h3>
+      <p>Use my referral links to get started with Binance and CoinDCX:</p>
+      <a href="https://www.binance.com/activity/referral-entry/CPA/together-v4?hl=en&ref=CPA_00HHV2IYMJ" target="_blank">Binance Referral</a> |
+      <a href="https://join.coindcx.com/invite/ZVS4" target="_blank">CoinDCX Referral</a>
+    </footer>
+  </main>
+
+  <script>
+    const quotes = [
+      "Consistency is Key!",
+      "Position Sizing Matters!",
+      "Risk Management Wins!",
+      "Patience Pays Off!",
+      "Stick to Your Strategy!"
+    ];
+
+    let currentQuote = 0;
+    setInterval(() => {
+      currentQuote = (currentQuote + 1) % quotes.length;
+      document.getElementById("quote-container").innerText = quotes[currentQuote];
+    }, 3000);
+
+    const progressBar = document.getElementById("progress-bar");
+    const currentBalanceElement = document.getElementById("current-balance");
+    const targetBalance = 250000; // Target balance
+    let currentBalance = 50000; // Starting balance
+
+    // Update the progress bar dynamically
+    function updateProgress() {
+      const percentage = (currentBalance / targetBalance) * 100;
+      progressBar.style.width = percentage + "%";
+      progressBar.innerHTML = percentage.toFixed(2) + "%";
+      currentBalanceElement.innerText = currentBalance.toFixed(2);
+    }
+
+    // Form submission handler
+    document.getElementById("trade-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const date = document.getElementById("trade-date").value;
+      const coin = document.getElementById("coin-name").value;
+      const tradeType = document.getElementById("trade-type").value;
+      const entryPrice = parseFloat(document.getElementById("entry-price").value);
+      const exitPrice = parseFloat(document.getElementById("exit-price").value);
+      const margin = parseFloat(document.getElementById("margin").value);
+      const leverage = parseFloat(document.getElementById("leverage").value);
+
+      const profitLoss = (exitPrice - entryPrice) * margin * leverage * (tradeType === "Long" ? 1 : -1);
+
+      currentBalance += profitLoss;
+
+      const journalEntries = document.getElementById("journal-entries");
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${date}</td>
+        <td>${coin}</td>
+        <td>${tradeType}</td>
+        <td>${entryPrice.toFixed(2)}</td>
+        <td>${exitPrice.toFixed(2)}</td>
+        <td>${margin.toFixed(2)}</td>
+        <td>${leverage}x</td>
+        <td class="${profitLoss >= 0 ? 'profit' : 'loss'}">${profitLoss.toFixed(2)}</td>
+        <td>${document.getElementById("comments").value}</td>
+      `;
+      journalEntries.appendChild(newRow);
+
+      document.getElementById("trade-form").reset();
+      updateProgress();
+    });
+
+    // Initialize progress
+    updateProgress();
+  </script>
+</body>
+</html>
