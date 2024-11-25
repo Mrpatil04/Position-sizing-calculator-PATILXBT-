@@ -9,131 +9,126 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-image: url('https://images.unsplash.com/photo-1620896518360-bd6f56221360?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDN8fGJpdGNvaW58ZW58MHx8fHwxNjg2NTUyNzE3&ixlib=rb-1.2.1&q=80&w=1920');
-      background-size: cover;
-      background-position: center;
-    }
-    header {
-      background-color: rgba(39, 174, 96, 0.8);
-      color: white;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
       text-align: center;
-      padding: 20px;
     }
-    header img {
-      width: 50px;
-      vertical-align: middle;
+
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px 0;
     }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin: 5px 0 0;
+      font-size: 1.2rem;
+      color: #f0db4f;
+    }
+
     main {
       padding: 20px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
     }
+
     .section {
-      margin-bottom: 30px;
+      margin: 20px auto;
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.1);
       padding: 20px;
-      background-color: white;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
-    input, select, textarea, button {
-      width: 100%;
+
+    h2 {
+      margin-top: 0;
+      color: #f0db4f;
+    }
+
+    form input, form select, form textarea, form button {
+      display: block;
+      margin: 10px auto;
       padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      width: 90%;
+      max-width: 400px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
     }
-    button {
-      background-color: #27ae60;
-      color: white;
+
+    form input, form select, form textarea {
+      background: #fff;
+      color: #333;
+    }
+
+    form button {
+      background: #f0db4f;
+      color: #333;
+      font-weight: bold;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #1e8449;
+
+    form button:hover {
+      background: #e5c700;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
+      margin-top: 20px;
     }
-    th, td {
+
+    table th, table td {
+      border: 1px solid rgba(255, 255, 255, 0.3);
       padding: 10px;
       text-align: center;
-      border: 1px solid #ddd;
     }
-    th {
-      background-color: #27ae60;
-      color: white;
+
+    table th {
+      background: rgba(255, 255, 255, 0.2);
     }
-    .profit {
-      color: green;
+
+    table td.profit {
+      color: #0f0;
     }
-    .loss {
-      color: red;
+
+    table td.loss {
+      color: #f00;
     }
+
     .progress-container {
-      background-color: #ddd;
-      border-radius: 15px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      height: 20px;
+      border-radius: 10px;
       overflow: hidden;
-      position: relative;
-      height: 40px;
-      margin-top: 10px;
+      margin: 20px 0;
     }
+
     .progress-bar {
       height: 100%;
-      width: 0%;
-      background-color: #27ae60;
+      background: #f0db4f;
+      width: 0;
+      color: #333;
       text-align: center;
-      color: white;
-      line-height: 40px;
-      font-weight: bold;
-      transition: width 1s;
+      line-height: 20px;
+      font-size: 0.8rem;
     }
-    .quote-container {
-      text-align: center;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 10px;
-      animation: fadeInOut 3s infinite alternate;
-      font-size: 1.8em;
-      font-weight: bold;
-      color: white;
-      background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+
+    #main-content {
+      display: none;
     }
-    @keyframes fadeInOut {
-      from {
-        opacity: 0.6;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #27ae60;
-      color: white;
-    }
-    footer a {
-      color: yellow;
+
+    a {
+      color: #f0db4f;
       text-decoration: none;
-      font-weight: bold;
     }
-    .roadmap {
-      background-color: rgba(39, 174, 96, 0.8);
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-    }
-    .roadmap h2 {
-      text-align: center;
-    }
-    .roadmap ul {
-      list-style: none;
-      padding: 0;
-    }
-    .roadmap ul li {
-      margin: 10px 0;
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -144,155 +139,167 @@
   </header>
 
   <main>
-    <!-- Progress Tracker -->
-    <div class="section">
-      <h2>Progress Tracker</h2>
-      <p><strong>Start Balance:</strong> ₹50,000</p>
-      <p><strong>Target Balance:</strong> ₹2,50,000</p>
-      <p><strong>Current Balance:</strong> ₹<span id="current-balance">50,000</span></p>
-      <div class="progress-container">
-        <div id="progress-bar" class="progress-bar">0%</div>
-      </div>
-    </div>
-
-    <!-- Motivational Quotes -->
-    <div class="quote-container" id="quote-container">
-      Consistency is Key!
-    </div>
-
-    <!-- Calculation -->
-    <div class="section">
-      <h2>Trade Calculation</h2>
-      <form id="trade-form">
-        <input type="date" id="trade-date" required>
-        <input type="text" id="coin-name" placeholder="Coin Name (e.g., BTC, ETH)" required>
-        <select id="trade-type" required>
-          <option value="" disabled selected>Select Trade Type</option>
-          <option value="Long">Long</option>
-          <option value="Short">Short</option>
-        </select>
-        <input type="number" step="0.01" id="entry-price" placeholder="Entry Price (USDT)" required>
-        <input type="number" step="0.01" id="exit-price" placeholder="Exit Price (USDT)" required>
-        <input type="number" step="0.01" id="margin" placeholder="Margin (USDT)" required>
-        <input type="number" id="leverage" placeholder="Leverage (e.g., 10x)" required>
-        <textarea id="comments" placeholder="Comments (Optional)"></textarea>
-        <button type="submit">Add Trade</button>
+    <!-- Login Section -->
+    <div id="login-section">
+      <h2>Login to Access Your Journal</h2>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Enter Username" required>
+        <input type="password" id="password" placeholder="Enter Password" required>
+        <button type="submit">Login</button>
       </form>
     </div>
 
-    <!-- Trade Journal -->
-    <div class="section">
-      <h2>Trade Journal</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Coin</th>
-            <th>Trade Type</th>
-            <th>Entry Price (USDT)</th>
-            <th>Exit Price (USDT)</th>
-            <th>Margin (USDT)</th>
-            <th>Leverage</th>
-            <th>Profit/Loss (USDT)</th>
-            <th>Comments</th>
-          </tr>
-        </thead>
-        <tbody id="journal-entries">
-          <!-- Entries -->
-        </tbody>
-      </table>
-    </div>
+    <!-- Main Content After Login -->
+    <div id="main-content">
+      <!-- Progress Tracker -->
+      <div class="section">
+        <h2>Progress Tracker</h2>
+        <p><strong>Start Balance:</strong> ₹50,000</p>
+        <p><strong>Target Balance:</strong> ₹2,50,000</p>
+        <p><strong>Current Balance:</strong> ₹<span id="current-balance">50,000</span></p>
+        <div class="progress-container">
+          <div id="progress-bar" class="progress-bar">0%</div>
+        </div>
+      </div>
 
-    <!-- Trading Challenge Roadmap -->
-    <div class="roadmap">
-      <h2>Trading Challenge Roadmap</h2>
-      <ul>
-        <li><strong>Week 1:</strong> Aim to make ₹10,000 - Focus on learning and practicing with small trades.</li>
-        <li><strong>Week 2:</strong> Aim to make ₹20,000 - Start increasing trade sizes with good risk management.</li>
-        <li><strong>Week 3:</strong> Aim to make ₹30,000 - Experiment with different trade types and manage leverage.</li>
-        <li><strong>Week 4:</strong> Aim to make ₹50,000 - Review the past trades, optimize strategy, and refine approach.</li>
-        <li><strong>Month 2:</strong> Aim to hit ₹1,25,000 - Focus on consistent profits with proper risk management.</li>
-        <li><strong>Month 3:</strong> Final stretch, target ₹2,50,000 - Scale your trades with confidence and discipline.</li>
-      </ul>
-    </div>
+      <!-- Trade Journal Section -->
+      <div class="section">
+        <h2>Trade Journal</h2>
+        <form id="trade-form">
+          <input type="text" id="coin" placeholder="Coin (e.g., BTC)" required>
+          <select id="trade-type" required>
+            <option value="" disabled selected>Trade Type</option>
+            <option value="Buy">Buy</option>
+            <option value="Sell">Sell</option>
+          </select>
+          <input type="number" id="entry-price" placeholder="Entry Price (USDT)" required>
+          <input type="number" id="exit-price" placeholder="Exit Price (USDT)" required>
+          <input type="number" id="margin" placeholder="Margin (USDT)" required>
+          <input type="number" id="leverage" placeholder="Leverage" required>
+          <textarea id="comments" placeholder="Comments"></textarea>
+          <button type="submit">Add Trade</button>
+        </form>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Coin</th>
+              <th>Trade Type</th>
+              <th>Entry Price (USDT)</th>
+              <th>Exit Price (USDT)</th>
+              <th>Margin (USDT)</th>
+              <th>Leverage</th>
+              <th>Profit/Loss (USDT)</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody id="journal-entries">
+            <!-- Entries will be added here -->
+          </tbody>
+        </table>
+      </div>
 
-    <!-- About Section -->
-    <footer>
-      <h2>About Me</h2>
-      <p>Welcome to Crypto Patil's Trading Journal! I started crypto trading in 2021 and have been learning and improving ever since. Join me on this journey as I work towards achieving consistent success in crypto futures trading.</p>
-      <p>Contact me at: <strong>cryptopatil4488@gmail.com</strong></p>
-      <h3>Join My Trusted Platforms</h3>
-      <p>Use my referral links to get started with Binance and CoinDCX:</p>
-      <a href="https://www.binance.com/activity/referral-entry/CPA/together-v4?hl=en&ref=CPA_00HHV2IYMJ" target="_blank">Binance Referral</a> |
-      <a href="https://join.coindcx.com/invite/ZVS4" target="_blank">CoinDCX Referral</a>
-    </footer>
+      <!-- Roadmap Section -->
+      <div class="section">
+        <h2>Roadmap</h2>
+        <p>1. Phase 1: Basic trade journal with progress tracker.</p>
+        <p>2. Phase 2: Referral system integration.</p>
+        <p>3. Phase 3: Full-featured analytics and exchange API integration.</p>
+      </div>
+
+      <!-- Referral Link Section -->
+      <div class="section">
+        <h2>Referral Link</h2>
+        <p>Share your referral link: <a href="https://example.com/referral?code=CRYPTOPATIL" target="_blank">https://example.com/referral?code=CRYPTOPATIL</a></p>
+      </div>
+    </div>
   </main>
 
   <script>
-    const quotes = [
-      "Consistency is Key!",
-      "Position Sizing Matters!",
-      "Risk Management Wins!",
-      "Patience Pays Off!",
-      "Stick to Your Strategy!"
-    ];
+    const validUsername = "Cryptopatil";
+    const validPassword = "secure123";
 
-    let currentQuote = 0;
-    setInterval(() => {
-      currentQuote = (currentQuote + 1) % quotes.length;
-      document.getElementById("quote-container").innerText = quotes[currentQuote];
-    }, 3000);
-
+    const loginForm = document.getElementById("login-form");
+    const loginSection = document.getElementById("login-section");
+    const mainContent = document.getElementById("main-content");
+    const currentBalance = document.getElementById("current-balance");
+    const journalEntries = document.getElementById("journal-entries");
+    const tradeForm = document.getElementById("trade-form");
     const progressBar = document.getElementById("progress-bar");
-    const currentBalanceElement = document.getElementById("current-balance");
-    const targetBalance = 250000; // Target balance
-    let currentBalance = 50000; // Starting balance
 
-    // Update the progress bar dynamically
-    function updateProgress() {
-      const percentage = (currentBalance / targetBalance) * 100;
-      progressBar.style.width = percentage + "%";
-      progressBar.innerHTML = percentage.toFixed(2) + "%";
-      currentBalanceElement.innerText = currentBalance.toFixed(2);
+    // Initialize balance in localStorage
+    if (!localStorage.getItem("balance")) {
+      localStorage.setItem("balance", "50000");
     }
+    currentBalance.textContent = localStorage.getItem("balance");
 
-    // Form submission handler
-    document.getElementById("trade-form").addEventListener("submit", function(event) {
-      event.preventDefault();
+    // Load journal from localStorage
+    const journal = JSON.parse(localStorage.getItem("journal")) || [];
+    journal.forEach(addJournalEntryToTable);
 
-      const date = document.getElementById("trade-date").value;
-      const coin = document.getElementById("coin-name").value;
-      const tradeType = document.getElementById("trade-type").value;
-      const entryPrice = parseFloat(document.getElementById("entry-price").value);
-      const exitPrice = parseFloat(document.getElementById("exit-price").value);
-      const margin = parseFloat(document.getElementById("margin").value);
-      const leverage = parseFloat(document.getElementById("leverage").value);
+    function updateProgressBar() {
+      const balance = parseFloat(localStorage.getItem("balance"));
+      const progress = ((balance - 50000) / (250000 - 50000)) * 100;
+      progressBar.style.width = `${Math.min(progress, 100)}%`;
+      progressBar.textContent = `${Math.min(progress, 100).toFixed(1)}%`;
+    }
+    updateProgressBar();
 
-      const profitLoss = (exitPrice - entryPrice) * margin * leverage * (tradeType === "Long" ? 1 : -1);
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
 
-      currentBalance += profitLoss;
-
-      const journalEntries = document.getElementById("journal-entries");
-      const newRow = document.createElement("tr");
-      newRow.innerHTML = `
-        <td>${date}</td>
-        <td>${coin}</td>
-        <td>${tradeType}</td>
-        <td>${entryPrice.toFixed(2)}</td>
-        <td>${exitPrice.toFixed(2)}</td>
-        <td>${margin.toFixed(2)}</td>
-        <td>${leverage}x</td>
-        <td class="${profitLoss >= 0 ? 'profit' : 'loss'}">${profitLoss.toFixed(2)}</td>
-        <td>${document.getElementById("comments").value}</td>
-      `;
-      journalEntries.appendChild(newRow);
-
-      document.getElementById("trade-form").reset();
-      updateProgress();
+      if (username === validUsername && password === validPassword) {
+        alert("Login successful!");
+        loginSection.style.display = "none";
+        mainContent.style.display = "block";
+      } else {
+        alert("Invalid username or password!");
+      }
     });
 
-    // Initialize progress
-    updateProgress();
+    tradeForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const entry = {
+        date: new Date().toLocaleString(),
+        coin: document.getElementById("coin").value,
+        tradeType: document.getElementById("trade-type").value,
+        entryPrice: parseFloat(document.getElementById("entry-price").value),
+        exitPrice: parseFloat(document.getElementById("exit-price").value),
+        margin: parseFloat(document.getElementById("margin").value),
+        leverage: parseFloat(document.getElementById("leverage").value),
+        comments: document.getElementById("comments").value,
+      };
+      entry.profitLoss = ((entry.exitPrice - entry.entryPrice) * entry.margin * entry.leverage).toFixed(2);
+
+      journal.push(entry);
+      localStorage.setItem("journal", JSON.stringify(journal));
+      addJournalEntryToTable(entry);
+
+      const newBalance = parseFloat(localStorage.getItem("balance")) + parseFloat(entry.profitLoss);
+      localStorage.setItem("balance", newBalance.toFixed(2));
+      currentBalance.textContent = newBalance.toFixed(2);
+      updateProgressBar();
+
+      tradeForm.reset();
+    });
+
+    function addJournalEntryToTable(entry) {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${entry.date}</td>
+        <td>${entry.coin}</td>
+        <td>${entry.tradeType}</td>
+        <td>${entry.entryPrice}</td>
+        <td>${entry.exitPrice}</td>
+        <td>${entry.margin}</td>
+        <td>${entry.leverage}</td>
+        <td class="${entry.profitLoss < 0 ? 'loss' : 'profit'}">${entry.profitLoss}</td>
+        <td>${entry.comments}</td>
+      `;
+      journalEntries.appendChild(row);
+    }
   </script>
 </body>
 </html>
