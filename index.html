@@ -346,3 +346,130 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Position Sizing Calculator</title>
+  <style>
+    /* Styles for the calculator */
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background-color: #1a1a1a;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #f3ba2f;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #00c58a;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #1a1a1a;
+      font-size: 0.9em;
+    }
+
+    footer a {
+      color: #f3ba2f;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Position Sizing Calculator</h1>
+  </header>
+  <main>
+    <section>
+      <label for="amount">Amount You Can Afford to Lose ($):</label>
+      <input type="number" id="amount" placeholder="Enter amount">
+
+      <label for="stopLoss">Stop Loss Percentage (%):</label>
+      <input type="number" id="stopLoss" placeholder="Enter stop loss">
+
+      <label for="leverage">Leverage (e.g., 10):</label>
+      <input type="number" id="leverage" placeholder="Enter leverage">
+
+      <button onclick="calculatePosition()">Calculate</button>
+    </section>
+    <section id="result" style="margin-top: 20px;"></section>
+  </main>
+  <footer>
+  <p>Visit my <a href="https://mrpatil04.github.io/crypto-trading-journal/" target="_blank">Crypto Trading Journal</a></p>
+  <p>Contact me at <a href="mailto:cryptopatil4488@gmail.com">cryptopatil4488@gmail.com</a></p>
+  <p>© 2024 Position Sizing Calculator | Created by Crypto Patil</p>
+</footer>
+
+  <script>
+    // JavaScript for the calculator
+    function calculatePosition() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      const stopLoss = parseFloat(document.getElementById("stopLoss").value) / 100;
+      const leverage = parseFloat(document.getElementById("leverage").value);
+
+      if (!amount || !stopLoss || !leverage) {
+        alert("Please fill in all fields!");
+        return;
+      }
+
+      const positionSizing = amount / stopLoss;
+      const margin = positionSizing / leverage;
+
+      document.getElementById("result").innerHTML = `
+        <p><strong>Position Sizing:</strong> $${positionSizing.toFixed(2)}</p>
+        <p><strong>Margin Required:</strong> $${margin.toFixed(2)}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
